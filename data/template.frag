@@ -1,6 +1,17 @@
+/*
+{
+  "IMPORTED": {
+    "bricks": {
+      "PATH": "brick.jpg",
+    },
+  },
+}
+*/
+
 precision highp float;
 
 uniform vec2 resolution;
+uniform sampler2D bricks;
 uniform float time;
 
 #define pi 3.14159265359
@@ -61,14 +72,13 @@ mat2 rotate2d(float angle){
 	return mat2(cos(angle),-sin(angle), sin(angle),cos(angle));
 }
 
-void main() {
+void main(){
   float t = time;
+  vec2 st = (gl_FragCoord.xy / resolution);
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy) / resolution.y;
   float gd = length(uv);
-  uv = mod(uv*(10.+.5*sin(uv.y+t)), 1.);
-  float md = length(uv-.5);
-  float pct = cubicPulse(.5,.12,uv.x) + cubicPulse(.5,.12,uv.y);
-  pct = clamp(pct,.0,0.05);
-  vec3 rgb = rgb(vec3(0.,0.,pct));
-  gl_FragColor = vec4(rgb,1.);
+  float scl = 50.-20.*(.5+.5*sin(uv.y+t));
+  float noise = .005*snoise(uv.x*scl, uv.y*scl, t);
+  vec3 texColor = texture2D(bricks, st+noise).xyz;
+  gl_FragColor = vec4(texColor,1.);
 }
