@@ -2,7 +2,7 @@
 {
   "IMPORTED": {
     "bricks": {
-      "PATH": "brick.jpg",
+      "PATH": "mosaic.jpg",
     },
   },
 }
@@ -77,8 +77,10 @@ void main(){
   vec2 st = (gl_FragCoord.xy / resolution);
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy) / resolution.y;
   float gd = length(uv);
-  float scl = 50.-20.*(.5+.5*sin(uv.y+t));
-  float noise = .005*snoise(uv.x*scl, uv.y*scl, t);
-  vec3 texColor = texture2D(bricks, st+noise).xyz;
-  gl_FragColor = vec4(texColor,1.);
+  float scl = 100.+10.*(.5+.5*sin(5.*uv.y+t*1.25));
+  float noise = snoise(uv.x*scl, uv.y*scl, t);
+
+  vec3 texColor = texture2D(bricks, st+noise*.005).xyz;
+  texColor -= noise*.1;
+  gl_FragColor = vec4(vec3(texColor),1.);
 }
