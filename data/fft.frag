@@ -104,12 +104,10 @@ void main() {
     float sp = texture2D(spectrum, vec2(s(0., 1.,audioX), .0)).r;
     float off = pow(volume,4.)*.00000005;
     float height = .5;
-
-    // float audioY = uv.y * (0.1-length(uv));
     float audioY = uv.y*2.05;
-    color.r += cubicPulse(0.125-off,0.+sp*height,audioY);
+    color.r += cubicPulse(0.125-off,sp*height,audioY);
     color.g += cubicPulse(0.125,0.+sp*height,audioY);
-    color.b += cubicPulse(0.125+off,0.+sp*height,audioY);
+    color.b += cubicPulse(0.125+off,sp*height,audioY);
 
     color = mix(color, vec3(0.), .15);
 
