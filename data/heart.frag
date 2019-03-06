@@ -3,11 +3,6 @@ precision highp float;
 
 uniform vec2 resolution;
 uniform float time;
-uniform vec2 mouse;
-uniform sampler2D backbuffer;
-uniform sampler2D samples;
-uniform sampler2D spectrum;
-uniform float volume;
 
 #define pi 3.1415926535897932384626433
 #define s smoothstep
