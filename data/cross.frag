@@ -5,11 +5,6 @@ precision highp float;
 
 uniform vec2 resolution;
 uniform float time;
-uniform vec2 mouse;
-uniform sampler2D backbuffer;
-uniform sampler2D samples;
-uniform sampler2D spectrum;
-uniform float volume;
 
 vec3 rgb( in vec3 hsb){
     vec3 rgb = clamp(abs(mod(hsb.x*6.0+

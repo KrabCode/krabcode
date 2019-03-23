@@ -96,7 +96,7 @@ void main() {
   float t = time*.03;
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy) / resolution.y;
   uv *= rotate2d(pi/4.);
-  float scl = 10.3;
+  float scl = .03;
   const float range = 5.;
   float pct = 0.;
   for(float x = -range;x < range;x++){

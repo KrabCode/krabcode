@@ -74,17 +74,72 @@ float distLine(vec2 p, vec2 a , vec2 b){
 
 float line(vec2 p, vec2 a, vec2 b){
   float d = distLine(p,a,b);
-  float m = S(.005, .00, d);
+  float m = S(.03, .01, d);
   float dd = length(a-b);
+  m *= (S(1.2,.0,dd)) + S(.03, 0.0, abs(.5-dd)) ;
   return m;
+}
+
+float N21(vec2 p){
+  p = fract(p*vec2(230.44,80.73));
+  p += dot(p,p+19.5);
+  return fract(p.x*p.y);
+}
+
+vec2 N22(vec2 p){
+  float n = N21(p);
+  return vec2(n, N21(p+n));
+}
+
+vec2 getPos(vec2 id, vec2 offset){
+  vec2 n = N22(id+offset)*(800.+time*.5);
+  return offset+sin(n)*.45;
+}
+
+float drawGrid(vec2 uv){
+  vec2 gv = fract(uv)-.5;
+  vec2 id = floor(uv);
+  vec2 pos  = getPos(id,vec2(0.));
+  float resultColor = 0.;
+
+  //draw line from center to all direct  neighbours
+  for(float x = -1.; x <= 1.; x++){
+    for(float y = -1.; y <= 1.; y++){
+      vec2 offpos = getPos(id,vec2(x,y));
+      resultColor += line(gv, pos, offpos);
+      float lightIntensity = 40.;
+      vec2 j = (offpos-gv)*lightIntensity;
+      float light = 1./dot(j,j);
+      resultColor += light;
+    }
+  }
+
+  //draw  lines crossing the center but not originating in it
+  resultColor += line(gv,getPos(id, vec2(-1., 0.)), getPos(id, vec2(0., -1.)));
+  resultColor += line(gv,getPos(id, vec2(-1., 0.)), getPos(id, vec2(0.,  1.)));
+  resultColor += line(gv,getPos(id, vec2( 1., 0.)), getPos(id, vec2(0., -1.)));
+  resultColor += line(gv,getPos(id, vec2( 1., 0.)), getPos(id, vec2(0.,  1.)));
+  return resultColor;
 }
 
 void main(){
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy)/resolution.y;
-  vec3 hsb = vec3(0., 0., .1);
-  vec2 a = vec2(-.25, 0.);
-  vec2 b = vec2(+.25, 0.);
-  uv.y += .1*sin(uv.x*12.+time);
-  hsb.b += line(uv,a,b);
-  gl_FragColor = vec4(rgb(hsb),1.);
+  vec2 orig = uv;
+  float origScale = 100.;
+  float zoomMovement = 0.*(.5+.5*sin(time));
+  uv *= origScale + zoomMovement;
+  float m = 0.;
+  vec3 hsb = vec3(0.);
+  const float iMax = 20.;
+  for(float i = 0.; i <= iMax; i++){
+    float iN = i/iMax;
+    uv *= .8;
+    uv += 0.;
+    m = drawGrid(uv);
+    m = clamp(0., 1., m);
+    hsb.xyz += rgb(vec3(iN*0.8-.5*time+length(orig)*.1,1.-m, m*iN));
+  }
+
+  hsb *= S(1.2,.0,length(orig)); //spotlight on the center
+  gl_FragColor = vec4(hsb,1.);
 }

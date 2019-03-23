@@ -2,7 +2,7 @@ precision highp float;
 
 uniform vec2 resolution;
 uniform float time;
-
+//#define resolution u_resolution
 #define pi 3.1415926535897932384626433
 
 float cubicPulse( float c, float w, float x ){

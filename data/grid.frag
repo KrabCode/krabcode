@@ -1,11 +1,7 @@
-/*{ "audio": true,
-    "pixelRatio": 2
-}*/
-
 precision highp float;
-
-uniform vec2 resolution;
 uniform float time;
+uniform vec2 mouse;
+uniform vec2 resolution;
 
 #define pi 3.14159265359
 #define S(a, b, t) smoothstep(a, b, t)
@@ -50,10 +46,10 @@ float snoise(float x0,float y0, float z0) {
 }
 
 float cubicPulse( float c, float w, float x ){
-	 x = abs(x - c);
-	 if( x>w ) return 0.0;
-	 x /= w;
-	 return 1.0 - x*x*(3.0-2.0*x);
+   x = abs(x - c);
+   if( x>w ) return 0.0;
+   x /= w;
+   return 1.0 - x*x*(3.0-2.0*x);
 }
 
 vec3 rgb( in vec3 c ){
@@ -62,7 +58,7 @@ vec3 rgb( in vec3 c ){
 }
 
 mat2 rotate2d(float angle){
-	return mat2(cos(angle),-sin(angle), sin(angle),cos(angle));
+  return mat2(cos(angle),-sin(angle), sin(angle),cos(angle));
 }
 
 float distLine(vec2 p, vec2 a , vec2 b){
@@ -74,17 +70,23 @@ float distLine(vec2 p, vec2 a , vec2 b){
 
 float line(vec2 p, vec2 a, vec2 b){
   float d = distLine(p,a,b);
-  float m = S(.005, .00, d);
-  float dd = length(a-b);
+  float m = S(.025, .00, d);
+  // float dd = length(a-b);
+  // m *= S(0.,1.5,dd);
   return m;
 }
 
 void main(){
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy)/resolution.y;
-  vec3 hsb = vec3(0., 0., .1);
-  vec2 a = vec2(-.25, 0.);
-  vec2 b = vec2(+.25, 0.);
-  uv.y += .1*sin(uv.x*12.+time);
-  hsb.b += line(uv,a,b);
+  vec2 ov = gl_FragCoord.xy/resolution.xy;
+  float d = distance(mouse.xy, ov);
+  vec3 hsb = vec3(0.);
+  float scl = 75.;
+  vec2 gv = fract(uv*scl)-.5;
+  vec2 id = floor(uv*scl)+.5;
+  float pct = .5+.5*sin(abs(id.x*id.y*80.)-time);
+  hsb.r += .75+pct*1.0;
+  hsb.g += 1.;
+  hsb.b += 1.-pct*3.0-d;
   gl_FragColor = vec4(rgb(hsb),1.);
 }
