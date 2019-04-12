@@ -77,7 +77,7 @@
         positionLocation = gl.getAttribLocation(program, "a_position");
         gl.uniform1f(timeLocation, timeStamp/60.0);
         timeStamp += 1;
-        gl.uniform2f(resolutionLocation, canvas.width,canvas.height);
+        gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
         gl.enableVertexAttribArray(positionLocation);
         gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
         gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -167,7 +167,7 @@
 
       float line(vec2 p, vec2 a, vec2 b){
         float d = distLine(p,a,b);
-        float m = S(.005, .00, d);
+        float m = S(.01, .00, d);
         float dd = length(a-b);
         m *= (S(1.2,.0,dd)) + S(.03, 0.0, abs(.5-dd)) ;
         return m;
@@ -189,60 +189,17 @@
         return offset+sin(n)*.45;
       }
 
-      float drawGrid(vec2 uv){
-        vec2 gv = fract(uv)-.5;
-        vec2 id = floor(uv);
-        vec2 pos  = getPos(id,vec2(0.));
-        float resultColor = 0.;
-
-        //draw line from center to all direct  neighbours
-        for(float x = -1.; x <= 1.; x++){
-          for(float y = -1.; y <= 1.; y++){
-            vec2 offpos = getPos(id,vec2(x,y));
-            resultColor += line(gv, pos, offpos);
-            float lightIntensity = 40.;
-            vec2 j = (offpos-gv)*lightIntensity;
-            float light = 1./dot(j,j);
-            resultColor += light;
-          }
-        }
-
-        //draw  lines crossing the center but not originating in it
-        resultColor += line(gv,getPos(id, vec2(-1., 0.)), getPos(id, vec2(0., -1.)));
-        resultColor += line(gv,getPos(id, vec2(-1., 0.)), getPos(id, vec2(0.,  1.)));
-        resultColor += line(gv,getPos(id, vec2( 1., 0.)), getPos(id, vec2(0., -1.)));
-        resultColor += line(gv,getPos(id, vec2( 1., 0.)), getPos(id, vec2(0.,  1.)));
-        return resultColor;
-      }
-
-
       void main(){
         vec2 uv = (gl_FragCoord.xy-.5*resolution.xy)/resolution.y;
-        vec3 hsb = vec3(0.,0.,0.);
-        float len = .5;
-        float dist = length(uv);
-        vec2 a = vec2(-len,0.);
-        vec2 b = vec2(len,0.);
-        vec2 c = vec2(-len,0.);
-        vec2 d = vec2(len,0.);
-
-        float off = .03*sin(15.*uv.x+time);
-         off += .003*sin(150.*uv.x-time*10.);
-        a.y += off;
-        b.y += off;
-        c.y -= off;
-        d.y -= off;
-
-        const float scl = .025;
-        uv.x = mod(uv.x, scl);
-        hsb.b += line(uv,vec2(scl*.5,off), vec2(scl*.5, -off));
-
+        vec3 hsb = vec3(0., 0., .1);
+        vec2 a = vec2(-.25, 0.);
+        vec2 b = vec2(+.25, 0.);
+        uv.y += .1*sin(uv.x*12.+time);
+        hsb.b += line(uv,a,b);
         gl_FragColor = vec4(rgb(hsb),1.);
       }
     // ]]>
     </script>
-
-
 </head>
 
    <body>

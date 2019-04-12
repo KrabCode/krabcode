@@ -1,31 +1,27 @@
-precision mediump float;
+precision highp float;
 uniform float time;
 uniform vec2 resolution;
 
 #define MAX_STEPS 100
 #define MAX_DIST 100.
-#define SURF_DIST 0.1
+#define SURF_DIST 0.01
 
 float GetDist(vec3 p) {
-  vec4 s = vec4(0., 1., 6., 1.);
-
-  float sphereDist = length(p-s.xyz)-s.w;
-  float planeDist = p.y;
-
-  float d = min(sphereDist, planeDist);
-  return d;
+  vec4 sphere = vec4(0., 1., 6., 1.);
+  vec4 moon = vec4(2.*cos(time), 1., 6.+2.*sin(time), .2);
+  float sphereDist = length(p-sphere.xyz)-sphere.w;
+  float moonDist = length(p-moon.xyz)-moon.w;
+  return min(sphereDist, moonDist);
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
   float dO = 0.;
-
-  for ( int i = 0; i < MAX_STEPS; i++ ) {
+  for (int i = 0; i < MAX_STEPS; i++ ) {
       vec3 p = ro + rd * dO;
       float dS = GetDist(p);
       dO += dS;
       if ( dO > MAX_DIST || dS < SURF_DIST) break;
   }
-
   return dO;
 }
 
@@ -43,8 +39,8 @@ vec3 GetNormal(vec3 p) {
 }
 
 float GetLight(vec3 p) {
-  vec3 lightPos = vec3(0., 5., 6.);
-  lightPos.xz += vec2(cos(time), sin(time))*10.;
+  vec3 lightPos = vec3(10., 1., 0.);
+
   vec3 l = normalize(lightPos-p);
   vec3 n = GetNormal(p);
 
@@ -74,7 +70,7 @@ void main() {
   d /= clamp((sin(time)+1.)*10., 5., 9.);
   color = vec3(dif);
 
-  //color = GetNormal(p);
+  // color = GetNormal(p);
 
   gl_FragColor = vec4(color, 1.0);
 }
