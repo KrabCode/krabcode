@@ -99,14 +99,14 @@ void main(){
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy)/resolution.y;
   float d = length(uv);
   vec2 landId = floor(uv*40.)+1.0;
-  vec2 atmoId = floor(uv*60.)+1.0;
-  float planet = step(d, .3);
+  vec2 atmoId = floor(uv*70.)+1.0;
+  float planet = smoothstep(.35,.3, d);
   float landScl = .04;
-  float atmoScl = .08;
-  float land = max(.5,clamp(3.*fbm(landScl*(landId.x)-time*.2, landScl*landId.y, 0.), 0.,1.));
-  float atmosphere = clamp(2.*fbm(atmoScl*(atmoId.x)-time*.25, atmoScl*atmoId.y, 0.), 0.,1.);
-  float poles = smoothstep(.0, .1,abs(.5-landId.y)*.005);
-  vec3 hsb = vec3(mix(.2, 1.0, 1.-land), 1.-poles*planet, planet+poles*planet);
-  
+  float atmoScl = .01;
+  float land = max(.5,clamp(3.*fbm(landScl*(landId.x)-time*.1, landScl*landId.y, 0.), 0.,1.));
+  float atmosphere = clamp(fbm(atmoScl*(atmoId.x)-time*.2, atmoScl*atmoId.y, 0.), 0.,1.);
+  float poles = smoothstep(.0, .1,abs(.5-landId.y)*.004);
+  vec3 hsb = vec3(mix(.2, 1.0, 1.-land), 1.-poles*planet-atmosphere-(smoothstep(.3,.35,d)-smoothstep(.35,0.5,d)), planet+poles*planet);
+
   gl_FragColor = vec4(rgb(hsb),1.);
 }
