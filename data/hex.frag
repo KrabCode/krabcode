@@ -23,39 +23,34 @@ float hexDist(vec2 p){
   return c;
 }
 
-vec4 hexCoords(vec2 uv){
+vec2 hexCoords(vec2 uv){
   vec2 gridStep = vec2(1.,1.73);
   vec2 halfStep = gridStep*.5;
   vec2 a = mod(uv,gridStep)-halfStep;
   vec2 b = mod(uv-halfStep, gridStep)-halfStep;
-  bool odd = length(a) < length(b);
-  vec2 gv = odd ? a:b;
-  float row = odd ? 1.:0.;
-  float hexDist = hexDist(gv);
-  return vec4(gv, gv.x-uv.x, row);
+  vec2 gv = length(a) < length(b) ? a:b;
+  return gv;
 }
 
 void main(){
   float third = 1./3.;
   float sixth = 1./6.;
-  float t = time*.1;
+  float twelfth = 1./12.;
+  float t = time*.05;
   vec3 col = vec3(0.);
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy) / resolution.y;
   uv *= 3.;
-  vec4 hexCoords = hexCoords(uv);
+  vec2 hexCoords = hexCoords(uv);
   float hexDist = hexDist(hexCoords.xy)*.5;
-
   float angle = atan(hexCoords.y, hexCoords.x);
   angle = (pi+angle)/(pi*2.); // normalize from [-pi,pi] to [0,1]
-  angle += sixth*hexCoords.w;
-  bool mirror = mod(angle, third) > sixth;
+  bool mirror = mod(angle, sixth) > twelfth;
   angle = mod(angle, sixth);
   if(mirror){
     angle = (sixth)-angle;
   }
-  angle = angle*6.;
-
-  vec2 st = vec2(.5+hexDist*cos(angle), .5+hexDist*sin(angle+t));
+  angle += t;
+  vec2 st = vec2(.5+hexDist*cos(angle), .5+hexDist*sin(angle));
   col.rgb = texture2D(image1, st).rgb;
   gl_FragColor = vec4(col,1.);
 }
