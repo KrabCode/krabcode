@@ -32,8 +32,10 @@ void main() {
     vec3 color = vec3(.00);
     float smp = texture2D(samples, abs(uv)).x;
     uv.y += .1*smp-.05;
+
     // uv.y = fract(uv.y*2.)-.5;
     color += pulse(.0, .005, uv.y);
-    color += texture2D(backbuffer, gl_FragCoord.xy/resolution.xy).xyz*.9;
+
+    color += texture2D(backbuffer, gl_FragCoord.xy/resolution.xy).xyz*.5;
     gl_FragColor = vec4(color,1.);
 }

@@ -1,17 +1,29 @@
+
+
+
+/*{
+    "pixelRatio": 1
+}*/
+
 precision highp float;
 uniform float time;
 uniform vec2 resolution;
 
+#define pi 3.14159265359
 #define MAX_STEPS 100
 #define MAX_DIST 100.
 #define SURF_DIST 0.01
 
 float GetDist(vec3 p) {
   vec4 sphere = vec4(0., 1., 6., 1.);
-  vec4 moon = vec4(2.*cos(time), 1., 6.+2.*sin(time), .2);
+  vec4 moon = vec4(2.*cos(time), 1., 6.+2.*sin(time), .05);
+  vec4 moonB = vec4(2.*cos(time+pi/2.), 1., 6.+2.*sin(time+pi/2.), .05);
+  vec4 moonC = vec4(2.*cos(time+2.*(pi/2.)), 1., 6.+2.*sin(time+2.*(pi/2.)), .05);
   float sphereDist = length(p-sphere.xyz)-sphere.w;
   float moonDist = length(p-moon.xyz)-moon.w;
-  return min(sphereDist, moonDist);
+  float moonBdist = length(p-moonB.xyz)-moonB.w;
+  float moonCDist = length(p-moonC.xyz)-moonC.w;
+  return min(moonCDist,min(moonBdist,min(sphereDist, moonDist)));
 }
 
 float RayMarch(vec3 ro, vec3 rd) {
@@ -49,17 +61,17 @@ float GetLight(vec3 p) {
   float d = RayMarch(p+n*SURF_DIST*2., l);
   if ( d < length(lightPos-p) )
     dif *= .1;
-
   return  dif;
 }
 
 void main() {
-  vec2 uv = (gl_FragCoord.xy -.5*resolution.xy) / resolution.y;
-
+  vec2 uv = gl_FragCoord.xy /resolution.xy;
+  uv = fract(uv*2.);
+  uv -= 0.5;
   vec3 color = vec3(0.0);
 
 
-  vec3 ro = vec3(0., 1., 0.);
+  vec3 ro = vec3(0., 0., 0.);
   vec3 rd = normalize(vec3(uv.x, uv.y, 1.));
 
   float d = RayMarch(ro, rd);
@@ -67,7 +79,7 @@ void main() {
   vec3 p = ro + rd * d;
   float dif = GetLight(p);
 
-  d /= clamp((sin(time)+1.)*10., 5., 9.);
+  // d /= clamp((sin(time)+1.)*10., 5., 9.);
   color = vec3(dif);
 
   // color = GetNormal(p);
