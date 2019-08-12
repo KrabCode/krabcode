@@ -1,16 +1,22 @@
-/*{
-    "pixelRatio": 2
-}*/
+/*
+{
+  "IMPORTED": {
+    "bricks": {
+      "PATH": "mosaic.jpg",
+    },
+  },
+}
+*/
 
 precision highp float;
 
 uniform vec2 resolution;
+uniform sampler2D bricks;
 uniform float time;
 
 #define pi 3.14159265359
-#define S(a, b, t) smoothstep(a, b, t)
+#define s smoothstep
 
-// functions from the Book of Shaders
 vec3 random3(vec3 c) {
     float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
     vec3 r;
@@ -66,32 +72,16 @@ mat2 rotate2d(float angle){
 	return mat2(cos(angle),-sin(angle), sin(angle),cos(angle));
 }
 
-#define OCTAVES 12
-float fbm (float x, float y, float z) {
-	vec3 st = vec3(x,y,z);
-    float value = 0.0;
-    float amplitude = .5;
-    float frequency = 0.;
-    for (int i = 0; i < OCTAVES; i++) {
-		float n = abs(snoise(st.x, st.y, st.z));
-        value += amplitude * n;
-        st *= 2.;
-        amplitude *= .5;
-    }
-    return value;
-}
-
 void main(){
-  vec2 uv = (gl_FragCoord.xy-.5*resolution.xy)/resolution.y;
-  float d = length(uv);
-  vec2 landId = floor(uv*40.)+1.0;
-  vec2 atmoId = floor(uv*70.)+1.0;
-  float planet = smoothstep(.35,.3, d);
-  float landScl = .04;
-  float atmoScl = .01;
-  float land = max(.5,clamp(3.*fbm(landScl*landId.x-time*.1, landScl*landId.y, 0.), 0.,1.));
-  float atmosphere = clamp(fbm(atmoScl*atmoId.x-time*.2, atmoScl*atmoId.y, 0.), 0.,1.);
-  float poles = smoothstep(.0, .1,abs(.5-landId.y)*.004);
-  vec3 hsb = vec3(mix(.2, 1.0, 1.-land), 1.-poles*planet-atmosphere-(smoothstep(.3,.35,d)-smoothstep(.35,0.5,d)), planet+poles*planet);
-  gl_FragColor = vec4(rgb(hsb),1.);
+  float t = time*.1;
+  vec2 st = (gl_FragCoord.xy / resolution);
+  vec2 uv = (gl_FragCoord.xy-.5*resolution.xy) / resolution.y;
+  float gd = length(uv);
+  float scl = 5.1;
+  float noise = snoise(uv.x*scl, uv.y*scl, t);
+  float angle = noise*pi*2.;
+  float r = .015;
+  vec2 off = vec2(r*cos(angle), r*sin(angle));
+  vec3 texColor = texture2D(bricks, st+off).xyz;
+  gl_FragColor = vec4(vec3(texColor),1.);
 }

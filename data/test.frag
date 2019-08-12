@@ -74,17 +74,17 @@ float distLine(vec2 p, vec2 a , vec2 b){
 
 float line(vec2 p, vec2 a, vec2 b){
   float d = distLine(p,a,b);
-  float m = S(.005, .00, d);
+  float m = S(.025, .00, d);
   float dd = length(a-b);
   return m;
 }
 
 void main(){
   vec2 uv = (gl_FragCoord.xy-.5*resolution.xy)/resolution.y;
-  vec3 hsb = vec3(0., 0., .1);
+  vec3 hsb = vec3(0., 0., .0);
   vec2 a = vec2(-.25, 0.);
   vec2 b = vec2(+.25, 0.);
-  uv.y += .1*sin(uv.x*12.+time);
+  uv.y += .1*sin(uv.x*12.5+time);
   hsb.b += line(uv,a,b);
   gl_FragColor = vec4(rgb(hsb),1.);
 }
