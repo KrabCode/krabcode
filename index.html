@@ -4,18 +4,22 @@
   <title>Krabcode</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="libs/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+  <script src="dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<div class="container">
+<div class="nav bg-dark">
+	<h3>Krabcode</h3>
+</div>
+
+<div class="container-fluid">
 
   <div class="jumbotron bg-dark text-white">
 	<h2>Grid of diagonals</h2> 
-	<p>sin(distance+angle-time)</p>
+	<p>sin(d+a-t) > 0 ? / : \</p>
 	  <div align="center" class="embed-responsive embed-responsive-16by9">
 		<video autoplay muted loop class="embed-responsive-item">
 			<source src="videos/diagonals.mp4" type="video/mp4">
@@ -25,7 +29,7 @@
   
   <div class="jumbotron bg-dark text-white">
 	<h2>Dot plane</h2> 
-	<p>y = sin(d-t) + (1 - sin(d-t)) * sin(angle)</p>
+	<p>y = sin(d-t) + (1 - sin(d-t)) * sin(a)</p>
 	  <div align="center" class="embed-responsive embed-responsive-16by9">
 		<video autoplay muted loop class="embed-responsive-item">
 			<source src="videos/dotPlane.mp4" type="video/mp4">
