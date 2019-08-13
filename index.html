@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>	
-  <title>Krabcode</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="dist/js/bootstrap.min.js"></script>
+<head>
+    <title>krabcode.eu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="icons/simple-line-icons-master/css/simple-line-icons.css">
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
 
 <div class="nav bg-dark">
-	<h3>Krabcode</h3>
+    <li class="nav-item">
+        <a class="nav-link" href="https://github.com/KrabCode"> <i class="icon-social-github"></i> </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://play.google.com/store/apps/developer?id=Krabcode"> <i class="icon-control-play"></i> </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://www.reddit.com/user/Simplyfire"><i class="icon-social-reddit"></i></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://www.instagram.com/krabcode"><i class="icon-social-instagram"></i></a>
+    </li>
 </div>
 
-<div class="container-fluid">
-
-  <div class="jumbotron bg-dark text-white">
-	<h2>Grid of diagonals</h2> 
-	<p>sin(d+a-t) > 0 ? / : \</p>
-	  <div align="center" class="embed-responsive embed-responsive-16by9">
-		<video autoplay muted loop class="embed-responsive-item">
-			<source src="videos/diagonals.mp4" type="video/mp4">
-		</video>
-	  </div>
-  </div>
-  
-  <div class="jumbotron bg-dark text-white">
-	<h2>Dot plane</h2> 
-	<p>y = sin(d-t) + (1 - sin(d-t)) * sin(a)</p>
-	  <div align="center" class="embed-responsive embed-responsive-16by9">
-		<video autoplay muted loop class="embed-responsive-item">
-			<source src="videos/dotPlane.mp4" type="video/mp4">
-		</video>
-	  </div>
-  </div>
-  
-  <div class="jumbotron bg-dark text-white">
-  <h2>Mountain</h2> 
-  <p>fbm + shadows + stars</p>
-  <div align="center" class="embed-responsive embed-responsive-16by9">
-    <video autoplay muted loop class="embed-responsive-item">
-        <source src="videos/mountain.mp4" type="video/mp4">
+<header class="bg-dark">
+    <video playsinline muted loop autoplay>
+        <source src="videos/header.mp4" type="video/mp4">
     </video>
-  </div>
-  </div>
-  
-</div>
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1 class="display-3">krabcode</h1>
+                <h2>programming pretty things since 2016</h2>
+            </div>
+        </div>
+    </div>
+</header>
 
+<body class="bg-dark">
 </body>
+
 </html>
