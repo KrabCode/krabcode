@@ -1,8 +1,6 @@
-
-.idea/encodings.xml
-.idea/jsLibraryMappings.xml
-.idea/krabcode.iml
-.idea/misc.xml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/workspace.xml
+.idea/
+krabcode.iml
+.idea/uiDesigner.xml
+.idea/libraries/processing.xml
+.idea/libraries/PostFX.xml
+.idea/libraries/peasycam.xml
