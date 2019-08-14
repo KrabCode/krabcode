@@ -31,6 +31,8 @@ header video {
   transform: translateX(-50%) translateY(-50%);
 }
 
+video:focus {outline:0;}
+
 header .container {
   position: relative;
   z-index: 2;
@@ -66,8 +68,6 @@ footer{
   filter: alpha(opacity=50);
   opacity: .5;
 }
-
-video:focus {outline:0;}
 
 .thumb{
   float:left;
