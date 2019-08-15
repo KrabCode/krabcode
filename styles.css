@@ -11,7 +11,7 @@ body{
 header {
   color: black;
   position: relative;
-  height: 75vh;
+  height: 50vh;
   min-height: 25rem;
   width: 100%;
   overflow: hidden;
@@ -37,7 +37,6 @@ header .container {
   position: relative;
   z-index: 2;
 }
-
 
 footer{
   background-color: black;
