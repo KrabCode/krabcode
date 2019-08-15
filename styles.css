@@ -75,3 +75,27 @@ footer{
     max-width: 50%;
     max-height: 50%;
 }
+
+.carousel-control-prev{
+    opacity: 1;
+    -ms-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+
+.carousel-control-next{
+    opacity: 1;
+    -ms-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.modal-header{
+    border-bottom : 0;
+}
+
+.modal-footer{
+    border-top : 0;
+}
