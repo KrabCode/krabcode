@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="icons/simple-line-icons-master/css/simple-line-icons.css">
-    <script src="libs/jquery/jquery.min.js"></script>
-    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
 </head>
 
 
@@ -35,10 +32,6 @@
         </div>
     </div>
 
-    <video playsinline muted loop autoplay>
-        <source src="videos/header.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
     <div class="container h-100">
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100">
@@ -49,26 +42,19 @@
 </header>
 
 <body>
+
+<video autoplay muted loop id="background" poster="videos/background.jpg">
+    <source src="videos/background.mp4" type="video/mp4">
+</video>
+
 <div class="container">
-    <!--a href="#{{NAME}}Modal" role="button" data-toggle="modal"> <img class="thumb" src="videos/{{NAME}}.jpg" alt="Dot plane"/> </a>
-    <div id="{{NAME}}Modal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <video autoplay loop muted controls class="embed-responsive embed-responsive-1by1">
-                        <source src="videos/{{NAME}}.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-        </div>
-    </div-->
 
     <a href="#exclusionModal" role="button" data-toggle="modal"> <img class="thumb" src="videos/exclusion.jpg" alt="Dot plane"/> </a>
     <div id="exclusionModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg wide">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div id="exclusionCarousel" class="carousel carousel-fade" data-ride="carousel" data-interval="false" data-keyboard="true" >
+                    <div id="exclusionCarousel" class="carousel carousel-fade" data-ride="carousel" data-interval="false" data-keyboard="false" >
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
                                 <video autoplay loop muted class="embed-responsive embed-responsive-1by1">
@@ -101,7 +87,6 @@
             </div>
         </div>
     </div>
-
 
     <a href="#dotPlaneModal" role="button" data-toggle="modal"> <img class="thumb" src="videos/dotPlane.jpg" alt="Dot plane"/> </a>
     <div id="dotPlaneModal" class="modal fade" role="dialog">
@@ -145,7 +130,9 @@
 </body>
 
 <footer>
-
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </footer>
 
 </html>

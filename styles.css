@@ -56,8 +56,7 @@ footer{
    left: 0;
    z-index: 1040;
    background-color: black;
-
- }
+}
 
 .modal-backdrop.fade {
   filter: alpha(opacity=0);
@@ -77,19 +76,19 @@ footer{
 }
 
 .carousel-control-prev{
-    opacity: 1;
-    -ms-transform: translateX(-100%);
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
+    opacity: .3;
+    -ms-transform: translateX(-75%);
+    -moz-transform: translateX(-75%);
+    -webkit-transform: translateX(-75%);
+    transform: translateX(-75%);
 }
 
 .carousel-control-next{
-    opacity: 1;
-    -ms-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+    opacity: .3;
+    -ms-transform: translateX(75%);
+    -moz-transform: translateX(75%);
+    -webkit-transform: translateX(75%);
+    transform: translateX(75%);
 }
 
 .modal-header{
@@ -98,4 +97,17 @@ footer{
 
 .modal-footer{
     border-top : 0;
+}
+
+#background{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
 }
