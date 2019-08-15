@@ -9,3 +9,11 @@ $(document).bind('keyup', function(e) {
         e.preventDefault();
     }
 });
+
+$(window).on('shown.bs.modal', function() {
+    document.getElementById("background").pause();
+});
+
+$(window).on('hide.bs.modal', function() {
+    document.getElementById("background").play();
+});

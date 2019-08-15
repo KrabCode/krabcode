@@ -59,12 +59,12 @@ footer{
 
 .modal-backdrop.fade {
   filter: alpha(opacity=0);
-  opacity: .8;
+  opacity: .95;
 }
 
 .modal-backdrop.in {
   filter: alpha(opacity=50);
-  opacity: .5;
+  opacity: .95;
 }
 
 .thumb{
