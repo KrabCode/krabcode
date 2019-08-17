@@ -130,15 +130,16 @@ footer {
     z-index: -1;
 }
 
-.nav-link {
+.ico {
     color: darkgray;
+    text-align: center;
 }
-.nav-link:visited{
-    color: darkgray;
+.ico:visited{
+    color: gray;
 }
-.nav-link:hover{
-    color: white;
+.ico:hover{
+    color: lightgray;
 }
-.nav-link:active{
+.ico:active{
     color: white;
 }
