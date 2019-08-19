@@ -1,4 +1,5 @@
 .idea/
+out/
 krabcode.iml
 .idea/uiDesigner.xml
 .idea/libraries/processing.xml

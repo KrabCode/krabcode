@@ -143,3 +143,7 @@ footer {
 .ico:active{
     color: white;
 }
+
+.list-inline-item a{
+    text-decoration: none;
+}
