@@ -3,9 +3,6 @@ uniform float time;
 uniform vec2 resolution;
 
 #define pi 3.14159265359
-#define S(a, b, t) smoothstep(a, b, t)
-
-float sin_(float v) { return (sin(v)+1.)*.5; }
 
 float cubicPulse( float c, float w, float x ){
    x = abs(x - c);
