@@ -13,6 +13,7 @@ import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@SuppressWarnings("SameParameterValue")
 class IndexBuilder {
     public static void main(String[] args) throws IOException {
         String indexPath = "C:\\Projects\\krabcode\\index.html";
@@ -68,7 +69,7 @@ class IndexBuilder {
     private static String createSimpleModal(File folder) {
         ArrayList<String> uniqueFilenames = uniqueFilenamesInFolder(folder);
         String videoExtension = getVideoExtension(folder);
-        String simpleModal = "<a href=\"#" + folder.getName() + "Modal\" role=\"button\" data-toggle=\"modal\"> <img class=\"thumb\" src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" alt=\"" + folder.getName() + "\"/> </a>\n" +
+        return "<a href=\"#" + folder.getName() + "Modal\" role=\"button\" data-toggle=\"modal\"> <img class=\"thumb\" src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" alt=\"" + folder.getName() + "\"/> </a>\n" +
                 "    <div id=\"" + folder.getName() + "Modal\" class=\"modal fade\" role=\"dialog\">\n" +
                 "        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\n" +
                 "            <div class=\"modal-content\">\n" +
@@ -80,7 +81,6 @@ class IndexBuilder {
                 "            </div>\n" +
                 "        </div>\n" +
                 "    </div>";
-        return simpleModal;
     }
 
     @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
