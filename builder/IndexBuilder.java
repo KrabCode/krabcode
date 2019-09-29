@@ -24,7 +24,7 @@ class IndexBuilder {
         container.append(generateContentFromFolder("C:\\Projects\\krabcode\\content"));
         writeAllLines(Paths.get(indexPath), doc.outerHtml().split("/n"));
         println("index.html updated successfully");
-        // TODO sort by date created,  upload to forpsi
+        // TODO upload to forpsi
     }
 
     private static String generateContentFromFolder(String path) {
