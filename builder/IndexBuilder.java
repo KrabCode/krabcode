@@ -67,13 +67,14 @@ class IndexBuilder {
 
     private static String createSimpleModal(File folder) {
         ArrayList<String> uniqueFilenames = uniqueFilenamesInFolder(folder);
+        String videoExtension = getVideoExtension(folder);
         String simpleModal = "<a href=\"#" + folder.getName() + "Modal\" role=\"button\" data-toggle=\"modal\"> <img class=\"thumb\" src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" alt=\"" + folder.getName() + "\"/> </a>\n" +
                 "    <div id=\"" + folder.getName() + "Modal\" class=\"modal fade\" role=\"dialog\">\n" +
                 "        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\n" +
                 "            <div class=\"modal-content\">\n" +
                 "                <div class=\"modal-body\">\n" +
                 "                    <video autoplay loop muted class=\"embed-responsive embed-responsive-1by1\">\n" +
-                "                        <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".mp4\" type=\"video/mp4\">\n" +
+                "                        <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + "."+videoExtension+"\" type=\"video/"+videoExtension+"\">\n" +
                 "                    </video>\n" +
                 "                </div>\n" +
                 "            </div>\n" +
@@ -85,6 +86,7 @@ class IndexBuilder {
     @SuppressWarnings("StringConcatenationInsideStringBufferAppend")
     private static String createCarouselModal(File folder) {
         ArrayList<String> uniqueFilenames = uniqueFilenamesInFolder(folder);
+        String videoExtension = getVideoExtension(folder);
         StringBuilder carouselModal = new StringBuilder();
         carouselModal.append("<a href=\"#" + folder.getName() + "Modal\" role=\"button\" data-toggle=\"modal\"> <img class=\"thumb\" src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" alt=\"" + folder.getName() + "\"/> </a>\n" +
                 "    <div id=\"" + folder.getName() + "Modal\" class=\"modal fade\" role=\"dialog\">\n" +
@@ -96,13 +98,13 @@ class IndexBuilder {
 
         carouselModal.append("<div class=\"carousel-item active\">\n" +
                 "                  <video autoplay loop muted class=\"embed-responsive embed-responsive-1by1\">\n" +
-                "                      <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".mp4\" type=\"video/mp4\">\n" +
+                "                      <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + "."+videoExtension+"\" type=\"video/"+videoExtension+"\">\n" +
                 "                  </video>\n" +
                 "              </div>\n");
         for (int i = 1; i < uniqueFilenames.size(); i++) {
             carouselModal.append("<div class=\"carousel-item\">\n" +
                     "      <video autoplay loop muted class=\"embed-responsive embed-responsive-1by1\">\n" +
-                    "          <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(i) + ".mp4\" type=\"video/mp4\">\n" +
+                    "          <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(i) + "."+videoExtension+"\" type=\"video/"+videoExtension+"\">\n" +
                     "      </video>\n" +
                     "</div>\n");
         }
@@ -123,6 +125,18 @@ class IndexBuilder {
                 "        </div>\n" +
                 "    </div>");
         return carouselModal.toString();
+    }
+
+    private static String getVideoExtension(File folder) {
+        for(File f: folder.listFiles()){
+            if(f.getName().contains("mp4")){
+                return "mp4";
+            }
+            if(f.getName().contains("webm")){
+                return "webm";
+            }
+        }
+        return null;
     }
 
     private static int uniqueFilenameCountInFolder(File folder) {
