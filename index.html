@@ -2,6 +2,20 @@
 <html lang="en">
  <head> 
   <title id="title">krab</title> 
+  <script>
+   var title = "krab";
+   var subtitle = "localhost programmer";
+   const domain = window.location.href;
+   console.log(domain);
+   if(domain.endsWith(".eu") || domain.endsWith(".eu/")){
+    title = "krab";
+    subtitle = "creative programmer";
+   }else if(domain.endsWith(".cz") || domain.endsWith(".cz/")){
+    title = "Jakub Rak&nbsp";
+    subtitle = "kreativní programátor";
+   }
+   document.getElementById("title").innerHTML = title;
+  </script> 
   <link rel="icon" type="image/jpg" href="icons/favicon.jpg"> 
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -14,7 +28,11 @@
    <div class="container" style="margin-top: 100px"> 
     <p id="header" class="display-1 text-monospace">krab</p> 
    </div> 
-   <p class="lead">creative programmer</p> 
+   <p id="subtitle" class="lead">creative programmer</p> 
+   <script>
+    document.getElementById("header").innerHTML = title;
+    document.getElementById("subtitle").innerHTML = subtitle;
+   </script> 
    <div class="container-fluid" style="padding: 10px"> 
     <ul class="list-inline"> 
      <li class="list-inline-item "><a style="text-decoration: none;" href="https://github.com/KrabCode"> <i class="ico icon-social-github"> </i> </a> </li> 
@@ -62,18 +80,6 @@
      </div> 
     </div> 
    </div>
-   <a href="#ringModal" role="button" data-toggle="modal"> <img class="thumb" src="content/ring/1.jpg" alt="ring"> </a> 
-   <div id="ringModal" class="modal fade" role="dialog"> 
-    <div class="modal-dialog modal-dialog-centered modal-lg"> 
-     <div class="modal-content"> 
-      <div class="modal-body"> 
-       <video autoplay controls loop muted poster="content/ring/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
-        <source src="content/ring/1.mp4" type="video/mp4"> 
-       </video> 
-      </div> 
-     </div> 
-    </div> 
-   </div>
    <a href="#mindlessModal" role="button" data-toggle="modal"> <img class="thumb" src="content/mindless/1.jpg" alt="mindless"> </a> 
    <div id="mindlessModal" class="modal fade" role="dialog"> 
     <div class="modal-dialog modal-dialog-centered modal-lg"> 
@@ -81,6 +87,18 @@
       <div class="modal-body"> 
        <video autoplay controls loop muted poster="content/mindless/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
         <source src="content/mindless/1.mp4" type="video/mp4"> 
+       </video> 
+      </div> 
+     </div> 
+    </div> 
+   </div>
+   <a href="#ringModal" role="button" data-toggle="modal"> <img class="thumb" src="content/ring/1.jpg" alt="ring"> </a> 
+   <div id="ringModal" class="modal fade" role="dialog"> 
+    <div class="modal-dialog modal-dialog-centered modal-lg"> 
+     <div class="modal-content"> 
+      <div class="modal-body"> 
+       <video autoplay controls loop muted poster="content/ring/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
+        <source src="content/ring/1.mp4" type="video/mp4"> 
        </video> 
       </div> 
      </div> 
@@ -224,18 +242,6 @@
      </div> 
     </div> 
    </div>
-   <a href="#mountainModal" role="button" data-toggle="modal"> <img class="thumb" src="content/mountain/1.jpg" alt="mountain"> </a> 
-   <div id="mountainModal" class="modal fade" role="dialog"> 
-    <div class="modal-dialog modal-dialog-centered modal-lg"> 
-     <div class="modal-content"> 
-      <div class="modal-body"> 
-       <video autoplay controls loop muted poster="content/mountain/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
-        <source src="content/mountain/1.mp4" type="video/mp4"> 
-       </video> 
-      </div> 
-     </div> 
-    </div> 
-   </div>
    <a href="#exclusionModal" role="button" data-toggle="modal"> <img class="thumb" src="content/exclusion/1.jpg" alt="exclusion"> </a> 
    <div id="exclusionModal" class="modal fade" role="dialog"> 
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document"> 
@@ -266,13 +272,13 @@
      </div> 
     </div> 
    </div>
-   <a href="#dotPlaneModal" role="button" data-toggle="modal"> <img class="thumb" src="content/dotPlane/1.jpg" alt="dotPlane"> </a> 
-   <div id="dotPlaneModal" class="modal fade" role="dialog"> 
+   <a href="#mountainModal" role="button" data-toggle="modal"> <img class="thumb" src="content/mountain/1.jpg" alt="mountain"> </a> 
+   <div id="mountainModal" class="modal fade" role="dialog"> 
     <div class="modal-dialog modal-dialog-centered modal-lg"> 
      <div class="modal-content"> 
       <div class="modal-body"> 
-       <video autoplay controls loop muted poster="content/dotPlane/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
-        <source src="content/dotPlane/1.mp4" type="video/mp4"> 
+       <video autoplay controls loop muted poster="content/mountain/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
+        <source src="content/mountain/1.mp4" type="video/mp4"> 
        </video> 
       </div> 
      </div> 
@@ -308,11 +314,22 @@
      </div> 
     </div> 
    </div>
+   <a href="#dotPlaneModal" role="button" data-toggle="modal"> <img class="thumb" src="content/dotPlane/1.jpg" alt="dotPlane"> </a> 
+   <div id="dotPlaneModal" class="modal fade" role="dialog"> 
+    <div class="modal-dialog modal-dialog-centered modal-lg"> 
+     <div class="modal-content"> 
+      <div class="modal-body"> 
+       <video autoplay controls loop muted poster="content/dotPlane/1.jpg" class="embed-responsive embed-responsive-1by1 main-video"> 
+        <source src="content/dotPlane/1.mp4" type="video/mp4"> 
+       </video> 
+      </div> 
+     </div> 
+    </div> 
+   </div>
   </div> 
   <footer id="footer"> 
    <script defer type="text/javascript" src="libs/jquery/jquery.min.js"></script> 
    <script defer type="text/javascript" src="libs/bootstrap/js/bootstrap.min.js"></script> 
-   <script type="text/javascript" src="script.js"></script> 
   </footer>   
  </body>
 </html>
