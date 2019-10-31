@@ -74,7 +74,7 @@ class IndexBuilder {
                 "        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\n" +
                 "            <div class=\"modal-content\">\n" +
                 "                <div class=\"modal-body\">\n" +
-                "                    <video autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
+                "                    <video autofocus autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
                 "                        <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + "." + videoExtension + "\" type=\"video/" + videoExtension + "\">\n" +
                 "                    </video>\n" +
                 "                </div>\n" +
@@ -97,13 +97,13 @@ class IndexBuilder {
                 "                        <div class=\"carousel-inner\" role=\"listbox\">\n");
 
         carouselModal.append("<div class=\"carousel-item active\">\n" +
-                "                  <video autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
+                "                  <video autofocus autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
                 "                      <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + "." + videoExtension + "\" type=\"video/" + videoExtension + "\">\n" +
                 "                  </video>\n" +
                 "              </div>\n");
         for (int i = 1; i < uniqueFilenames.size(); i++) {
             carouselModal.append("<div class=\"carousel-item\">\n" +
-                    "      <video autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
+                    "      <video autofocus autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
                     "          <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(i) + "." + videoExtension + "\" type=\"video/" + videoExtension + "\">\n" +
                     "      </video>\n" +
                     "</div>\n");

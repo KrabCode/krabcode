@@ -99,6 +99,8 @@ footer {
     -moz-transform: translateX(-75%);
     -webkit-transform: translateX(-75%);
     transform: translateX(-75%);
+    max-height: 20%;
+    margin-top: 40%;
 }
 
 .carousel-control-next {
@@ -107,6 +109,8 @@ footer {
     -moz-transform: translateX(75%);
     -webkit-transform: translateX(75%);
     transform: translateX(75%);
+    max-height: 20%;
+    margin-top: 40%;
 }
 
 .modal-header {
