@@ -74,7 +74,7 @@ class IndexBuilder {
                 "        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\n" +
                 "            <div class=\"modal-content\">\n" +
                 "                <div class=\"modal-body\">\n" +
-                "                    <video autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
+                "                    <video autofocus autoplay controls loop muted poster=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + ".jpg\" class=\"embed-responsive embed-responsive-1by1 main-video\">\n" +
                 "                        <source src=\"content/" + folder.getName() + "/" + uniqueFilenames.get(0) + "." + videoExtension + "\" type=\"video/" + videoExtension + "\">\n" +
                 "                    </video>\n" +
                 "                </div>\n" +
