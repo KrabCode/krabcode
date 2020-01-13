@@ -75,7 +75,7 @@ float distLine(vec2 p, vec2 a , vec2 b){
 
 float line(vec2 p, vec2 a, vec2 b){
   float d = distLine(p,a,b);
-  float m = S(.008, .0, d);
+  float m = smoothstep(.008, .0, d);
   float dd = length(a-b);
   return m;
 }
