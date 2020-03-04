@@ -4,7 +4,6 @@ uniform vec2 mouse;
 uniform vec2 resolution;
 
 #define pi 3.14159265359
-#define S(a, b, t) smoothstep(a, b, t)
 
 vec3 random3(vec3 c) {
     float j = 4096.0*sin(dot(c,vec3(17.0, 59.4, 15.0)));
@@ -70,7 +69,7 @@ float distLine(vec2 p, vec2 a , vec2 b){
 
 float line(vec2 p, vec2 a, vec2 b){
   float d = distLine(p,a,b);
-  float m = S(.025, .00, d);
+  float m = smoothstep(.025, .00, d);
   // float dd = length(a-b);
   // m *= S(0.,1.5,dd);
   return m;
