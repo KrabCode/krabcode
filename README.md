@@ -1,4 +1,4 @@
-Hello, I'm Krab and here on GitHub I mostly maintain and slowly extend the LazyGui library for Processing here on GitHub.
+Hello, I'm Krab and here on GitHub I do creative coding animations and work on LazyGui - a library for Processing.
 
 Find my most recent visuals at [krab.md/animations](https://krab.md/animations.html)
 
