@@ -1,5 +1,5 @@
 Hello, I'm Krab,
-check out my most recent works at [krab.md/animations]([https://krab.md/](https://krab.md/animations.html))
+check out my most recent works at ![krab.md/animations]([https://krab.md/](https://krab.md/animations.html))
 
 ![github stats](https://github-readme-stats.vercel.app/api?username=KrabCode&theme=dracula&show_icons=true&custom_title=Krab%27s%20github%20stats)
 
