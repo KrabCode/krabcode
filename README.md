@@ -1,4 +1,6 @@
-Find my most recent visuals here: [krab.md/animations](https://krab.md/animations.html)
+Hello, I'm Krab and here on GitHub I mostly maintain and slowly extend the LazyGui library for Processing here on GitHub.
+
+Find my most recent visuals at [krab.md/animations](https://krab.md/animations.html)
 
 ![github stats](https://github-readme-stats.vercel.app/api?username=KrabCode&theme=dracula&show_icons=true&custom_title=Krab%27s%20github%20stats)
 
