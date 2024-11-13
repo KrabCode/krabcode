@@ -1,3 +1,6 @@
+Hello, I'm Krab,
+check out my recent works at [krab.md](https://krab.md/)
+
 ![github stats](https://github-readme-stats.vercel.app/api?username=KrabCode&theme=dracula&show_icons=true&custom_title=Krab%27s%20github%20stats)
 
 <!--
